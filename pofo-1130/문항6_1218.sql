@@ -117,6 +117,7 @@ close res_cursor;
 end //
 delimiter ;
 
+call sp_try_cursor();
 call sp_res_cursor();
 
 select * from temp_res;
