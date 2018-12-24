@@ -77,10 +77,10 @@
 -------------------------------------------
 
 >문항1. 
- <br/> [바로가기]()
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/%EB%AC%B8%ED%95%AD1_12_24.md)
 
 >문항2. 
- <br/> [바로가기]()
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/%EB%AC%B8%ED%95%AD2_12_24.sql)
 
  
 
