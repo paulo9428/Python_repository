@@ -93,7 +93,7 @@ with conn_dooodb:
                     hire_date datetime not null,
                     job_id varchar(10) not null,
                     salary int unsigned,
-                    commission_pct decimal(3, 2),
+                    commission_pct decimal(4, 2),
                     manager_id int unsigned,
                     department_id smallint(4)
                     )'''
@@ -120,11 +120,18 @@ with conn_dooodb:
     department_fk1 = "alter table Department add constraint foreign key fk_dept_emp (manager_id) references Employee(id)"
 
     cur.execute(employee_fk1)
+    print ('OK ====== employee_fk1 ====== OK' )
     cur.execute(employee_fk2)
+    print ('OK ====== employee_fk2 ====== OK' )
     cur.execute(employee_fk3)
+    print ('OK ====== employee_fk3 ====== OK' )
     cur.execute(job_history_fk1)
+    print ('OK ====== job_history_fk1 ====== OK'  )
     cur.execute(job_history_fk2)
+    print ('OK ====== job_history_fk2 ====== OK' )
     cur.execute(job_history_fk3)
+    print ('OK ====== job_history_fk3 ====== OK'  )
     cur.execute(department_fk1)
+    print ('OK ====== department_fk1 ====== OK'  )
 
     conn_dooodb.commit()
