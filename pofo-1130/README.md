@@ -82,6 +82,20 @@
 >문항2. 
  <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/%EB%AC%B8%ED%95%AD2_12_24.sql)
 
+
+데이터 이관 
+-------------------------------------------
+
+>모듈. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/mysql_migration.py)
+
+>데이터 옮기기. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/migration.py)
+ 
+>데이터 검증. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/inspect.py)
+ 
+
  
 
  
