@@ -1,9 +1,11 @@
 import urllib.request as ur
 
-url = "http://www.weather.go.kr/repositary/image/sat/coms/coms_mi_le1b_ir1_k_201901080330.thn.png"
+url = "http://www.weather.go.kr/weather/earthquake_volcano/domesticlist_download.jsp?startSize=999&endSize=999&pNo=6&startLat=999.0&endLat=999.0&startLon=999.0&endLon=999.0&lat=999.0&lon=999.0&dist=999.0&keyword=&startTm=&endTm=2018-12-31"
 
-saveFile = "./images/weather1.png"
+saveFile = "./images/weather2018.html"
 ur.urlretrieve(url, saveFile)
 print("OK!")
+
+
 
 
