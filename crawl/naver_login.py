@@ -26,7 +26,7 @@ for i in UserId[0:5]:
 id.send_keys(Keys.TAB)
 
 
-for i in UserPw[0:5]:
+for i in UserPw:
     time.sleep(random.randrange(1, 5) / 10)
     pw.send_keys(i)
 
@@ -35,11 +35,6 @@ pw.send_keys(Keys.TAB)
 for i in UserId[5:9]:
     time.sleep( random.randrange(1, 5) / 10 )
     id.send_keys(i)
-
-
-
-
-
 
 
 
