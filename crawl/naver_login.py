@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 drvPath = 'C:\workspace\chromedriver'
 driver = webdriver.Chrome(drvPath)
 UserId = "paulo9428"
-UserPw = ""
+UserPw = "dl014532dl"
 
 driver.get("https://www.naver.com")
 time.sleep(1)
@@ -21,6 +21,7 @@ pw = driver.find_element_by_id('pw')
 for i in UserId[0:5]:
     time.sleep( random.randrange(1, 5) / 10 )
     id.send_keys(i)
+
 
 
 id.send_keys(Keys.TAB)
@@ -40,7 +41,7 @@ for i in UserId[5:9]:
 
 time.sleep(0.5)
 
-pw.send_keys(Keys.RETURN)
+id.submit()    
 
 time.sleep(1)
 

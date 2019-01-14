@@ -1,6 +1,7 @@
 import os
 import sys
 import urllib.request
+import json
 
 client_id = "7u2Iu2IU18BGZQz8uekp"
 client_secret = "OP5l6EaQPj"
@@ -25,10 +26,12 @@ rescode = response.getcode()
 if(rescode==200):
 
     response_body = response.read()
-    json_data = response_body.decode('utf-8')
-    print(json_data)
-    # for j in json_data[0]:
-    #     print(j['title'], j['link'], j['bloggername'], j['postdate'] )
+    a = response_body.decode('utf-8')
+    # print(a)
+    
+    json_Data = json.loads(a, encoding='utf-8')
+    for j in json_Data['items']:
+        print('{}-{}-{}-{}'.format(j['title'], j['link'], j['bloggername'], j['postdate']))
 
 else:
     print("Error Code:" + rescode)

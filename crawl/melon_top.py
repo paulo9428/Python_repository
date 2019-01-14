@@ -1,4 +1,3 @@
-
 from bs4 import BeautifulSoup
 import requests
 
@@ -10,11 +9,7 @@ headers = {"Referer": "https://www.melon.com/artist/timeline.htm?artistId=982316
 res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, 'html.parser')
 
-
-
-
-
-
+#tr[song_no]
 rank_sel = '#lst50 > td:nth-of-type(2) > div > span.rank'    # 순위
 rank_sel2 = '#lst100 > td:nth-child(2) > div > span.rank'
 
