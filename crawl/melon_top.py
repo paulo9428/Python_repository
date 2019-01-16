@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 
 url = 'https://www.melon.com/chart/index.htm'
+lurl = "https://www.melon.com/commonlike/getSongLike.json"
 
 headers = {"Referer": "https://www.melon.com/artist/timeline.htm?artistId=982316",
            'user-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}

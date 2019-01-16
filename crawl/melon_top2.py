@@ -10,35 +10,49 @@ headers = {"Referer": "https://www.melon.com/artist/timeline.htm?artistId=982316
 res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, 'html.parser')
 
+trs = soup.select('#frm > div > table > tbody > tr')
 
-dic = {}
+# print(trs)
 
-song_no = tr.get('data-song-no')
-# likecnt_sel = '#lst50 > td:nth-child(8) > div > button > span.cnt'
-likecnt = button[data-song-no = song_no] > span.cnt
+for tr in trs:
+    
+    song_no = tr.attrs['data-song-no']
 
-tempDic = {'id': song_no, 'rank':  , 'song_name': , 'singer_name': , 'likecnt': }
+    print(tr.select_one('button[data-song-no = {}] > span.cnt'.format(song_no)).text)
 
-strJson = '{"Top100":[],"httpDomain":"http://www.melon.com","httpsDomain":"https://www.melon.com","staticDomain":"https://static.melon.co.kr"}'
+    #lst50 > td:nth-child(8) > div > button > span.cnt
+    
 
-
-a = json_loads(strJson, encoding = 'utf-8')
-
-for :
-
-
-dic{song_no} = tempDic
-
-
-a['Top100'] 
+    tempDic = {'rank': tr.select_one('td:nth-of-type(2) > div > span.rank').text , 
+            'song_name': tr.select_one('td:nth-child(6) > div > div > div.ellipsis.rank01 > span > a').text , 
+            'singer_name': tr.select_one('td:nth-child(6) > div > div > div.ellipsis.rank02 > a').text , 
+            'likecnt': tr.select_one('button[data-song-no = {}] > span.cnt'.format(song_no)).text }
 
 
+# print(tempDic)
+
+# strJson = '{"songs":[], "httpDomain":"http://www.melon.com","httpsDomain":"https://www.melon.com","staticDomain":"https://static.melon.co.kr"}'
+
+
+# a = json_loads(strJson, encoding = 'utf-8')
+
+# a['songs']
+
+
+
+# data-song-no
 
 
 
 
 
 
+
+# dic = {}
+
+
+# # likecnt_sel = '#lst50 > td:nth-child(8) > div > button > span.cnt'
+# likecnt = button[data-song-no = song_no] > span.cnt
 
 
 
