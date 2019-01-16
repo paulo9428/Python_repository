@@ -96,6 +96,23 @@
  <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/inspect.py)
  
 
+데이터 수집
+-------------------------------------------
+
+>멜론 TOP 100 스크레이핑. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melon_top.py) # 셀렉터로 데이터 뽑기
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melon_top2.py) # 데이터 뽑아서 제이슨 형태로 담기
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melon_top_t.py) # 선생님의 모범 답안
+ 
+>본인이 정한 사이트 데이터 수집. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/continue.py)
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/crawl_add.py)
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/crawl_site.py)
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/get_url.py)
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/makeurl.py)
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/urls.py)
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/yes_no_img.py)
+
  
 
  
