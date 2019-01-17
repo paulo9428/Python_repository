@@ -52,21 +52,15 @@ pprint(dic)
 
 
 
-
-
-
-
-fp = codecs.open("./melon_top_csv.py", "r", "utf-8")
-
-# aaa,bbb,"ccc,cc"
-reader = csv.reader(fp, delimiter=',', quotechar='"')
+result
 
 with codecs.open('./output.csv', 'w', 'utf-8') as ff:
     writer = csv.writer(ff, delimiter=',', quotechar='"')
+    writer.writerow(['랭킹', '제목', '가수 명', '좋아요 수', '좋아요 차이'])
 
-    for cells in reader:
-        print(cells)
-        
+
+    for  :
+        writer.writerow()
 
 
 
