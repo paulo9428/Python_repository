@@ -59,7 +59,9 @@ trs = soup.select('table tr')
 trd = soup.select('table tr td')
 
 for tr in trs:
-    a = tr.select('td')           ##### th 는 json의  key 값
+    a = tr.select('th')           ##### th 는 json의  key 값
+    b = tr.select('td')
+    
     print(a)    
 
 
@@ -67,6 +69,37 @@ for tr in trs:
 # {'회사' : [{ 'A사' : { '주소': '서울' , '직원수': '30명' , '전화번호': '02-2345-2323' , '대표메일': 'a@a.com',  }},
 # { 'B사' : {} },
 # { 'C사' : {} }]}
+
+
+{'회사' : {'A사'}}
+{ '주소': '서울' , '직원수': '30명' , '전화번호': '02-2345-2323' , '대표메일': 'a@a.com',  }
+
+
+
+companies = {}
+data = {}
+
+for i, tr in enumerate(trs):      ###필요없는 태그 제끼기 위해 enumerate 사용
+    if i == 0:
+        for j, th in enumerate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,50 +1,77 @@
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
+from pprint import pprint
 import json
-from time import sleep
-import pprint
-
-
-headers = {
-    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-}
+import csv, codecs
 
 url = "https://www.melon.com/chart/index.htm"
-lurl = "https://www.melon.com/commonlike/getSongLike.json"
 
-htmlRes = requests.get(url, headers = headers)
-print("HTML>>>>", htmlRes.url)
-soup = BeautifulSoup(htmlRes.text, 'html.parser')
-trs = soup.select('tr[data-song-no]')
-
-dic = {}
-for tr in trs:
-	song_no = tr.attrs['data-song-no']
-	rank = tr.select_one('td span.rank').text
-	info = tr.select_one('div.wrap_song_info')
-	title = info.select_one('div.rank01 a').text
-	singer = info.select_one('div.rank02 a').text
-	# print(song_no, rank, title, singer)
-	# print("--------------------------")
-	dic[song_no] = {"rank": rank, "title": title}
-
-# pprint.pprint(dic)
-# print(",".join(list(dic.keys())))
-
-params = {
-	"contsIds": ",".join(list(dic.keys()))
+heads = {
+    "Referer": "https: // www.melon.com/chart/index.htm",
+    "User-Agent": "Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
 }
 
-jsonRes = requests.get(lurl, headers = headers, params=params)
-print(jsonRes.url)
-jsonData = json.loads(jsonRes.text)
-# print(json.dumps(jsonData, ensure_ascii=False, indent=2))
+res = requests.get(url, headers=heads)
+html = res.text
 
+soup = BeautifulSoup(html, "html.parser")
+trs = soup.select('div#tb_list table tbody tr[data-song-no]')
+print(len(trs))
+# print(trs[0])
+
+dic = {}   # { song_no: {title:'...', singer: '...' } }
+
+for tr in trs:
+    song_no = tr.attrs['data-song-no']
+    ranking = tr.select_one('span.rank').text
+    title = tr.select_one('div.ellipsis.rank01 a').text
+    # singers = tr.select('div.ellipsis.rank02 a')
+    singers = tr.select('div.ellipsis.rank02 span a')
+    singer = ",".join([a.text for a in singers])
+
+    dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer}
+
+
+likeUrl = "https://www.melon.com/commonlike/getSongLike.json"
+likeParams = {
+    "contsIds": ",".join(dic.keys())
+}
+
+resLikecnt = requests.get(likeUrl, headers=heads, params=likeParams)
+# print(resLikecnt.url)
+jsonData = json.loads(resLikecnt.text)
+# pprint(jsonData)
 for j in jsonData['contsLike']:
-	contsid = j['CONTSID']
-	likecnt = j['SUMMCNT']
-	print(contsid, likecnt)
-	dic[str(contsid)]['likecnt'] = likecnt
+    key = str(j['CONTSID'])
+    songDic = dic[key]
+    songDic['likecnt'] = j['SUMMCNT']
 
+result = sorted(dic.items(), key=lambda d: d[1]['ranking'])
+# pprint(dic)
 
-pprint.pprint(dic)
+# sortLike = sorted(dic.items(), key=lambda d: d[1]['likecnt'])
+# leastLike = sortLike[0][1]['likecnt']
+leastLike = min(x[1]['likecnt'] for x in dic.items())
+
+# pprint(leastLike)
+
+with codecs.open('./meltop100.csv', 'w', 'utf-8') as ff:
+    writer = csv.writer(ff, delimiter=',', quotechar='"')
+    writer.writerow(['랭킹', '제목', '가수', '좋아요', '좋아요차이'])
+
+    likesum = 0
+    diffsum = 0
+    for i in result:
+        song = i[1]
+        rank = song['ranking']
+        title = song['title']
+        singer = song['singer']
+        likecnt = song['likecnt']
+        likeDiff = likecnt - leastLike
+        likesum = likesum + likecnt
+        diffsum = diffsum + likeDiff
+        l = [rank, title, singer, likecnt, likeDiff]
+        writer.writerow(l)
+        # print(song)
+
+    writer.writerow(['계', '', '', likesum, diffsum])
