@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import csv, codecs
-import urls
 import openpyxl
 from PIL import Image
 
@@ -29,21 +28,6 @@ for i, tr in enumerate(trs):
 
 
 
-for i in range(1, 101):
-    # insert image
-    imgFile = 'C:\workspace\Learn_Python\crawl\image\{}.jpg'.format(i)
-
-    # img = openpyxl.drawing.image.Image(imgFile)
-    # sheet2.add_image(img, 'B5')
-
-
-    # resize image
-
-    img2 = Image.open(imgFile)
-    new_img = img2.resize((30, 30))
-    new_img.save('new.png')
-    img3 = openpyxl.drawing.image.Image('new.png')
-    sheet2.add_image(img3, 'A{}'.format(i))
 
 
 
