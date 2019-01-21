@@ -60,21 +60,12 @@ sheet3 = book.create_sheet()
 sheet3.title = "세번째 시트"
 
 
-rows = []
+        
 
-with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
-    reader = csv.reader(meltop, delimiter=',', quotechar='"')
-    for i, row in enumerate(reader):
-        if i > 0 and i < 11:
-            rows.append([row[1], row[3]])
-            
-for row in rows:
-    sheet3.append(row)
-
-datax = Reference(sheet3, min_col=2, 
-		min_row=1, max_col=2, max_row=10)
-categs = Reference(sheet3, min_col=1,
-				 min_row=1, max_row=10)
+datax = Reference(sheet1, min_col=4,               
+		min_row=2, max_col=4, max_row=11)
+categs = Reference(sheet1, min_col=2, 
+				 min_row=2, max_row=11)
 
 chart = BarChart()
 chart.add_data(data=datax)
@@ -91,32 +82,22 @@ sheet3.add_chart(chart, "A3")
 ##-------------------------------------------------------------------------------------------
 
 
-rows2 = []
-
-with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
-    reader = csv.reader(meltop, delimiter=',', quotechar='"')
-    for i, row in enumerate(reader):
-        if i < 11:
-            rows2.append([row[1], row[4]])
-            
-for row in rows2:
-    sheet3.append(row)
-
 chart = ScatterChart()
 chart.style = 13
-chart.x_axis.title = '가수'
+chart.x_axis.title = '노래'
 chart.y_axis.title = '좋아요차이 수'
 
-xvalues = Reference(sheet3, min_col=1,
-			 min_row=2, max_row=11)
+xvalues = Reference(sheet1, min_col=2,
+max_col=2, min_row=2, max_row=11)
 
 
-values = Reference(sheet3, 
-            min_col=2, 
-            min_row=1, 
+values = Reference(sheet1, 
+            min_col=5, 
+            min_row=2, 
             max_row=11)
-series = Series(values, xvalues
-            )
+
+
+series = Series(values, xvalues)
 chart.series.append(series)
 
 sheet3.add_chart(chart, "A10")
