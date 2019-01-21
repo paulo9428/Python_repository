@@ -1,5 +1,13 @@
+import requests
+from bs4 import BeautifulSoup
 import openpyxl
 import csv, codecs
+from PIL import Image
+from openpyxl.chart import (
+    Reference, Series,
+    BarChart, ScatterChart
+)
+
 
 
 book = openpyxl.Workbook()
@@ -9,50 +17,129 @@ sheet1.title = "멜론 TOP100"
 
 
 
-# top_lst = []
+with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
+    reader = csv.reader(meltop, delimiter=',', quotechar='"')
 
-# fp = codecs.open("./meltop100.csv", "r", "utf-8")
+    for i, row in enumerate(reader):
+   # print(i, row)
+        for j, col in enumerate(row):
+            tcell = sheet1.cell(row=(i+1), column=j+1)
+            if i > 0 and (j == 0 or j > 2) and col.isnumeric():
+                print(j, col)
+                tcell.number_format
+                tcell.value = int(col)
+            else:
+                tcell.value = col
 
-# reader = csv.reader(fp, delimiter=',', quotechar='"')
+##------------------------------------------------------------------------------------
 
-# # with codecs.open('./output.csv', 'w', 'utf-8') as ff:
-# #     writer = csv.writer(ff, delimiter=',', quotechar='"')
 
-# for cells in reader:
-#     writer.writerow([cells[0], random.randrange(1,100)])    
 
+sheet2 = book.create_sheet()
+sheet2.title = "두번째 시트"
+
+for i in range(1, 101):
+ 
+    imgFile = 'C:\workspace\Learn_Python\crawl\image\{}.jpg'.format(i)
+
+
+    img2 = Image.open(imgFile)
+    new_img = img2.resize((30, 30))
+    new_img.save('new{}.png'.format(i))
+    img3 = openpyxl.drawing.image.Image('new{}.png'.format(i))
+    sheet2.add_image(img3, 'A{}'.format(i))
+
+
+
+
+
+##---------------------------------------------------------------------------------------------
+
+
+sheet3 = book.create_sheet()
+sheet3.title = "세번째 시트"
+
+
+rows = []
 
 with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
     reader = csv.reader(meltop, delimiter=',', quotechar='"')
     for i, row in enumerate(reader):
-        # print(row)
-        
-        for j in range(0, 5):
+        if i > 0 and i < 11:
+            rows.append([row[1], row[3]])
+            
+for row in rows:
+    sheet3.append(row)
 
-            sheet1.cell(row=i+1, column=j+1).value = row[j]
+datax = Reference(sheet3, min_col=2, 
+		min_row=1, max_col=2, max_row=10)
+categs = Reference(sheet3, min_col=1,
+				 min_row=1, max_row=10)
 
-for i in range(2, 102):
+chart = BarChart()
+chart.add_data(data=datax)
+chart.set_categories(categs)
 
-    tmpCell_D = sheet1['D{}'.format(i)]
-    tmpCell_D.number_format
+chart.legend = None  # 범례
+chart.varyColors = True
+chart.title = "좋아요 차트"
 
-    temCell_E = sheet1['E{}'.format(i)]
-    tmpCell_E.number_format
+sheet3.add_chart(chart, "A3")
 
-## int() 사용하세요 Slack 참고
 
-# with open('./meltop100.csv', mode = 'r', encoding = 'utf-8') as meltop:
-#     for line in meltop:
-#         top_lst.append(line.split(','))
 
-# # print(top_lst)
+##-------------------------------------------------------------------------------------------
 
-# for i in range(1, 102):
-#     for j in range(1, 5):
-#         sheet1.cell(row=i, column=j).value = top_lst[i][j]
+
+rows2 = []
+
+with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
+    reader = csv.reader(meltop, delimiter=',', quotechar='"')
+    for i, row in enumerate(reader):
+        if i < 11:
+            rows2.append([row[1], row[4]])
+            
+for row in rows2:
+    sheet3.append(row)
+
+chart = ScatterChart()
+chart.style = 13
+chart.x_axis.title = '가수'
+chart.y_axis.title = '좋아요차이 수'
+
+xvalues = Reference(sheet3, min_col=1,
+			 min_row=2, max_row=11)
+
+
+values = Reference(sheet3, 
+            min_col=2, 
+            min_row=1, 
+            max_row=11)
+series = Series(values, xvalues
+            )
+chart.series.append(series)
+
+sheet3.add_chart(chart, "A10")
 
 
 book.save("./output3.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,6 +4,8 @@ import csv, codecs
 import openpyxl
 from PIL import Image
 
+book = openpyxl.Workbook()
+
 sheet2 = book.create_sheet()
 sheet2.title = "두번째 시트"
 # sheet2['A1'] = datetime.datetime.now()

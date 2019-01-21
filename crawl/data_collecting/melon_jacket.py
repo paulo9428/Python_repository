@@ -37,23 +37,3 @@ for i, tr in enumerate(trs):
 
 
 
-# ifrSel = "iframe#mainFrame"
-# ifr = soup.select(ifrSel)
-
-# print(ifr)
-
-# # sel = "#SE-9311ee77-8bde-4b1f-9e02-7ea73e016f1f > div > div > a > img"
-# sel = "img.se-image-resource"
-
-# imgs = soup.select(sel)
-# # print(imgs, len(imgs))
-
-# if len(imgs) < 1:
-#     exit()
-
-# print("--------------------------------------")
-# for img in imgs:
-#     src = img.get('src')
-#     print("img>>", src)
-#     with open("./images/" + urls.getFilename(src), "wb") as file:
-#         file.write(requests.get(src).content)

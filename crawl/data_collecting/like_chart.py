@@ -34,7 +34,7 @@ chart.legend = None  # 범례
 chart.varyColors = True
 chart.title = "좋아요 차트"
 
-sheet.add_chart(chart, "A8")
+sheet.add_chart(chart, "A3")
 
 
 
