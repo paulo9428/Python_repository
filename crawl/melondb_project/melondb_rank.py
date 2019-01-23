@@ -3,6 +3,17 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 import json
 import csv, codecs
+import pymysql
+
+def get_conn(db):
+    return pymysql.connect(
+        host='35.200.103.240',
+        user='root',
+        password='dl014532.',
+        port=3306,
+        db=db,
+        charset='utf8')
+
 
 url = "https://www.melon.com/chart/index.htm"
 
@@ -56,12 +67,34 @@ for j in jsonData['contsLike']:
 dic = sorted(dic.items(), key=lambda d: d[1]['ranking'])      ##dic.items(): key와 value가 함께 온다
 
 # pprint(dic)
-rank = []
 
-for i in dic:
-    rank.append(i[1])
+SongRank_insert_list = []
 
-pprint(rank)
+
+
+conn = get_conn('melondb')
+with conn:
+    cur = conn.cursor()
+
+    sql_insert = "insert into SongRank(song_no, rank, rank_dt, like_cnt) values(%s,%s,%s,%s)"
+    
+    for j in dic:
+        
+        SongRank_insert_list.append([int(j[0]), j[1]['ranking'], j[1]['rank_dt'], j[1]['likecnt']])
+
+
+    # pprint(SongRank_insert_list)
+    cur.executemany(sql_insert, SongRank_insert_list)
+
+
+
+
+# rank = []
+
+# for i in dic:
+#     rank.append(i[1])
+
+# pprint(rank)
 
 
 ##--------------------------------------------------------------------
