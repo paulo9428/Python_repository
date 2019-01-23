@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from pprint import pprint
 import json
-import csv, codecs
 import pymysql
 
 def get_conn(db):
@@ -46,6 +45,7 @@ for tr in trs:
     singers = tr.select('div.ellipsis.rank02 span a')
     singer = ",".join([a.text for a in singers])
     # dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer}
+    
     dic[song_no] = {'ranking': int(ranking), 'rank_dt' : date + ' ' + time}
 
 # pprint(dic[song_no])
@@ -70,6 +70,10 @@ dic = sorted(dic.items(), key=lambda d: d[1]['ranking'])      ##dic.items(): key
 
 SongRank_insert_list = []
 
+for j in dic:
+    SongRank_insert_list.append([int(j[0]), j[1]['ranking'], j[1]['rank_dt'], j[1]['likecnt']])
+        
+
 
 
 conn = get_conn('melondb')
@@ -78,43 +82,13 @@ with conn:
 
     sql_insert = "insert into SongRank(song_no, rank, rank_dt, like_cnt) values(%s,%s,%s,%s)"
     
-    for j in dic:
-        
-        SongRank_insert_list.append([int(j[0]), j[1]['ranking'], j[1]['rank_dt'], j[1]['likecnt']])
-
-
+    
     # pprint(SongRank_insert_list)
     cur.executemany(sql_insert, SongRank_insert_list)
 
 
 
 
-# rank = []
-
-# for i in dic:
-#     rank.append(i[1])
-
-# pprint(rank)
-
-
-##--------------------------------------------------------------------
-
-# url = "https://www.melon.com/chart/index.htm"
-
-# heads = {
-#     "Referer": "https: // www.melon.com/chart/index.htm",
-#     "User-Agent": "Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-# }
-
-# res = requests.get(url, headers=heads)
-# html = res.text
-
-# soup = BeautifulSoup(html, "html.parser")
-
-# date = soup.select_one('#real_conts > div.multi_row > div.calendar_prid > span.yyyymmdd > span').text
-# time = soup.select_one('#real_conts > div.multi_row > div.calendar_prid > span.hhmm > span').text
-
-# print(date, time)
 
 
 
