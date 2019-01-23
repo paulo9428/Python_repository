@@ -13,7 +13,7 @@ def get_conn(db):
 
 # sql_truncate = "truncate table Meltop"    ## truncate 는 DDL 이라서 TRANSACTION 이 안먹음
 sql_truncate = "delete from Meltop"
-sql_insert = "insert into Meltop(rank, title, singer, likecnt) values(%s,%s,%s,%s)"
+sql_insert = "insert into SongRank(song_no, rank, rank_date, likecnt, sing_no, album_no) values(%s,%s,%s,%s,%s,%s)"
 isStart = True
 
 def save(lst):                                        ## 여러 단계에서 에러를 내본다
