@@ -4,6 +4,7 @@ import re
 import pprint
 import pymysql
 import time
+import json
 
 def get_conn(db):
     return pymysql.connect(
@@ -51,6 +52,7 @@ for album in albums:
 
     dic[album_no2] = {'album_name': album_name}
 
+
     
 # print(album_no_lst)
 # print(len(album_no_lst))
@@ -87,14 +89,49 @@ for i in album_no_lst:
 
          dic[i]['publisher'] = publisher[j+1].text
 
-print(dic)
 
 
+# print(dic)
           
 # time.sleep(0.5)        
 
 # print(publisher_name_lst)
 # print(len(publisher_name_lst))
+
+##---------------------------------------------------------------- 좋아요, 평점 구하기
+for i in album_no_lst:
+
+   likeUrl = "https://www.melon.com/commonlike/getAlbumLike.json?contsIds={}".format(i)
+   rateUrl = "https://www.melon.com/album/albumGradeInfo.json?albumId={}".format(i)
+   
+   likeParams = {
+    "contsIds": "i"
+   }
+   rateParams = {
+    "albumId" : "i"
+   }
+
+   resLikecnt = requests.get(likeUrl, headers=headers, params=likeParams)
+   resRating = requests.get(rateUrl, headers=headers, params=rateParams) 
+   # print(resLikecnt.url)
+   jsonData1 = json.loads(resLikecnt.text)
+   jsonData2 = json.loads(resRating.text)
+   # pprint(jsonData)
+   dic[i]['likecnt'] = jsonData1['contsLike'][0]['CONTSID']
+   dic[i]['rating'] = round(float(jsonData2["infoGrade"]['TOTAVRGSCORE']))
+
+
+# print(dic)
+# print(len(dic.keys()))
+   
+      
+
+   # result = sorted(dic.items(), key=lambda d: d[1]['ranking'])
+
+##----------------------------------------------------------------------
+
+
+
 
 
 
@@ -106,7 +143,7 @@ print(dic)
 album_insert_lst = []
 
 for i in album_no_lst:
-   album_insert_lst.append([i, dic[i]['album_name'], dic[i]['publisher']])
+   album_insert_lst.append([i, dic[i]['album_name'], dic[i]['publisher'], dic[i]['likecnt'], dic[i]['rating']])
 
 # print(album_insert_lst)
 
@@ -114,7 +151,7 @@ conn = get_conn('melondb')
 with conn:
     cur = conn.cursor()
 
-    sql_insert = "insert into Album(album_no, album_name, publisher) values(%s,%s,%s)"
+    sql_insert = "insert ignore into Album(album_no, album_name, publisher, likecnt, rating) values(%s,%s,%s,%s,%s)"
     
   
     # pprint(SongRank_insert_list)

@@ -132,8 +132,8 @@ conn = get_conn('melondb')
 with conn:
     cur = conn.cursor()
 
-    sql_insert1 = "insert into Singer(singer_no, singer_name, label) values(%s,%s,%s)"
-    sql_insert2 = "insert into Singer(singer_no, singer_name) values(%s,%s)"
+    sql_insert1 = "insert ignore into Singer(singer_no, singer_name, label) values(%s,%s,%s)"
+    sql_insert2 = "insert ignore into Singer(singer_no, singer_name) values(%s,%s)"
     
     
     # pprint(SongRank_insert_list)
