@@ -19,7 +19,7 @@ headers = {
    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
 }
 
-source_url = "https://www.melon.com/chart/index.htm"
+source_url = "http://vlg.berryservice.net:8099/melon/list"
 
 html = requests.get(source_url, headers = headers)
 soup = BeautifulSoup(html.text, 'html.parser')
@@ -30,6 +30,8 @@ albums = soup.select('div.ellipsis.rank03 > a')
 
 album_no_lst = []
 album_name_lst = []
+
+dic = {}
 
 for album in albums:
     
@@ -47,43 +49,64 @@ for album in albums:
     # print(album_name)
     album_name_lst.append(album_name)
 
+    dic[album_no2] = {'album_name': album_name}
+
+    
 # print(album_no_lst)
 # print(len(album_no_lst))
 # print(album_name_lst)
 # print(len(album_name_lst))
 
+# print(dic)
 
-publisher_name_lst = []
+# publisher_name_lst = []
 
 for i in album_no_lst:
-    
-    html = requests.get('https://www.melon.com/album/detail.htm?albumId={}'.format(i), headers = headers)
+   
+ 
+    html = requests.get('http://vlg.berryservice.net:8099/melon/detail?albumId={}'.format(i), headers = headers)
     soup = BeautifulSoup(html.text, 'html.parser')
 
     # print(soup)
-    
+   
     publisher = soup.select('#conts > div.section_info > div > div.entry > div.meta > dl > dt, dd')
 
-   
-  
-    
+   #  print(publisher)
 
-    for i, element in enumerate(publisher):
-        
-        if publisher[i].text == "발매사":
-            #  print(publishers[i+1].text)
 
-            publisher_name_lst.append(publisher[i+1].text)
 
-   # time.sleep(0.5)        
+
+    for j, element in enumerate(publisher):
+
+      
+       if publisher[j].text == "발매사":
+
+
+         # print(publisher[j+1].text)
+         # publisher_name_lst.append(publisher[j+1].text)
+
+         dic[i]['publisher'] = publisher[j+1].text
+
+print(dic)
+
+
+          
+# time.sleep(0.5)        
 
 # print(publisher_name_lst)
 # print(len(publisher_name_lst))
 
+
+
+
+
+
+
+
 album_insert_lst = []
 
-for i in range(100):
-   album_insert_lst.append([int(album_no_lst[i]), album_name_lst[i], publisher_name_lst[i]])
+for i in album_no_lst:
+   album_insert_lst.append([i, dic[i]['album_name'], dic[i]['publisher']])
 
 # print(album_insert_lst)
 
@@ -96,3 +119,6 @@ with conn:
   
     # pprint(SongRank_insert_list)
     cur.executemany(sql_insert, album_insert_lst)
+
+
+
