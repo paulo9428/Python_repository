@@ -1,4 +1,3 @@
-
 from bs4 import BeautifulSoup
 import requests
 import re
@@ -24,7 +23,6 @@ singer_name_lst = []
 dic = {}
 
 for singer in singers:
-    
     
     singer_no = singer.get("href")
     sn = re.compile('goArtistDetail\(\'(.*)\'.*')
@@ -63,9 +61,6 @@ for i in singer_no_lst:
     labels = soup.select('#conts > div.wrap_dtl_atist > div > div.wrap_atist_info > dl.atist_info.clfix > dt, dd')
 
    
-  
-    
-
     for j, element in enumerate(labels):
         
         if labels[j].text == "소속사":
@@ -85,18 +80,6 @@ for i in singer_no_lst:
 singer_not_label = list(set(singer_no_lst).difference(singer_exist_lable_lst))
 
 
-
-
-
-# listA = ["a","b"]
-# listB = ["b", "c"]
-# listC = list(set(listB).difference(listA))
-# print listC
-
-
-
-
-            
 
 # print(label_name_lst)
 # print(len(label_name_lst))
@@ -139,8 +122,4 @@ with conn:
     # pprint(SongRank_insert_list)
     cur.executemany(sql_insert1, singer_insert_lst_1)
     cur.executemany(sql_insert2, singer_insert_lst_2)
-
-
-
-
 

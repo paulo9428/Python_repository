@@ -131,15 +131,6 @@ for i in album_no_lst:
 ##----------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
 album_insert_lst = []
 
 for i in album_no_lst:
@@ -156,6 +147,3 @@ with conn:
   
     # pprint(SongRank_insert_list)
     cur.executemany(sql_insert, album_insert_lst)
-
-
-

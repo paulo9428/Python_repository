@@ -40,10 +40,10 @@ dic = {}   # { song_no: {title:'...', singer: '...' } }
 for tr in trs:
     song_no = tr.attrs['data-song-no']
     ranking = tr.select_one('span.rank').text
-    title = tr.select_one('div.ellipsis.rank01 a').text
-    singers = tr.select('div.ellipsis.rank02 a')
-    singers = tr.select('div.ellipsis.rank02 span a')
-    singer = ",".join([a.text for a in singers])
+    # title = tr.select_one('div.ellipsis.rank01 a').text
+    # singers = tr.select('div.ellipsis.rank02 a')
+    # singers = tr.select('div.ellipsis.rank02 span a')
+    # singer = ",".join([a.text for a in singers])
     # dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer}
     
     dic[song_no] = {'ranking': int(ranking), 'rank_dt' : date + ' ' + time}
@@ -71,9 +71,8 @@ dic = sorted(dic.items(), key=lambda d: d[1]['ranking'])      ##dic.items(): key
 SongRank_insert_list = []
 
 for j in dic:
-    SongRank_insert_list.append([int(j[0]), j[1]['ranking'], j[1]['rank_dt'], j[1]['likecnt']])
+    SongRank_insert_list.append([j[0], j[1]['ranking'], j[1]['rank_dt'], j[1]['likecnt']])
         
-
 
 
 conn = get_conn('melondb')
@@ -85,8 +84,6 @@ with conn:
     
     # pprint(SongRank_insert_list)
     cur.executemany(sql_insert, SongRank_insert_list)
-
-
 
 
 
