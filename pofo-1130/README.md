@@ -112,6 +112,35 @@
  <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/makeurl.py)
  <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/urls.py)
  <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/yes_no_img.py)
+ 
+ 멜론 top100 정보 mysql에 담기
+-------------------------------------------
+
+> Main flow. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/main_flow.py)
+
+> Melon Function. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_func.py) 
+
+> Collecting rank data. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_rank.py) 
+
+> Collecting album data. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_album.py) 
+
+> Collecting singer data. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_singer.py) 
+
+> Collecting song data. 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_song.py)
+ 
+> Collecting songsing data(Mapping table). 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_songsing.py) 
+ 
+ 
+ 
+ 
+ 
 
  
 
