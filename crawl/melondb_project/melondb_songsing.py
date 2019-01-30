@@ -18,7 +18,7 @@ def get_songsing_data():
         song_no = tr.attrs['data-song-no']                     ## 곡 번호
         # title = tr.select_one('div.ellipsis.rank01 a').text    ## 곡 제목
         
-        singers = tr.select('div.ellipsis.rank02 span a')
+        singers = tr.select('div.ellipsis.rank02 a')
         # singer_group = ",".join([a.text for a in singers])    ## 가수 묶음
         
         for singer in singers:
@@ -45,11 +45,11 @@ def get_songsing_data():
 
 
 
-    for k in Song.keys():
-        for i in range(len(Song[k]['singer_group'])):
-            songsing_insert_lst.append([k, Song[k]['singer_group'][i]])
+    # for k in Song.keys():
+    #     for i in range(len(Song[k]['singer_group'])):
+    #         songsing_insert_lst.append([k, Song[k]['singer_group'][i]])
 
-    return songsing_insert_lst
+    # return songsing_insert_lst
 
 
 
