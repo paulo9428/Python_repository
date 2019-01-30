@@ -135,7 +135,34 @@
  <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_song.py)
  
 > Collecting songsing data(Mapping table). 
- <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_songsing.py) 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/melondb_songsing.py)
+ 
+ 
+데이터 Mysql에 저장
+-------------------------------------------
+
+> NAVER API 이용해 블로그 데이터 저장하기 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/blog_python.py)
+
+> HTML Parsing 하여 DB에 가수 Detail 저장하기
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/html_parsing.py) 
+
+
+데이터 엑셀에 저장
+-------------------------------------------
+
+> mel.csv 를 meltop100.xlsx 로 저장
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/csv_excel.py) 
+
+> meltop100 의 album jacket 이미지를 엑셀파일에 저장 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/image_excel.py) 
+ 
+> Melon 상위 top10 의 좋아요 수와 좋아요 차이 수를 엑셀파일에 저장
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/like_chart.py)
+
+
+
+ 
  
  
  
