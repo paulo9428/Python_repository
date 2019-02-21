@@ -27,7 +27,7 @@ lst.sort()
 
 pprint(lst)
 
-def weather_map():
+def weather_map():                                      ## 맵 결과를 스트링으로?
 
     ret = {}
     prekey = None
