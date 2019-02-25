@@ -160,6 +160,14 @@
 > Melon 상위 top10 의 좋아요 수와 좋아요 차이 수를 엑셀파일에 저장
  <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/like_chart.py)
 
+BIGQUERY 와 MapReduce
+-------------------------------------------
+
+> 날씨 데이터에서 맵리듀스 함수를 통해 의미있는 데이터를 추출
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/weather_map.py) 
+
+> meltop100 의 album jacket 이미지를 엑셀파일에 저장 
+ <br/> [바로가기](https://github.com/paulo9428/Learn_Python/blob/master/pofo-1130/push_from_mysql.py) 
 
 
  
