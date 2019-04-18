@@ -40,5 +40,3 @@ print("\n\nscore=", score)
 print("-----------------------------------------")
 report = metrics.classification_report(test['labels'], pred)
 print(report)
-
-
