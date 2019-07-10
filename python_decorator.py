@@ -10,7 +10,7 @@ def display_1():
  
 @decorator_function
 def display_info(name, age): # 위 예제와 다르게 인자가 전달된다. 
-    print("display_info( {}, {} ) 함수가 실행됐습니다.").format(name, age)
+    print("display_info( {}, {} ) 함수가 실행됐습니다.".format(name, age))
  
 # display_1 = decorator_function(display_1) 
 # display_2 = decorator_function(display_2) 
@@ -41,6 +41,7 @@ def div_inits(a,b):
 add = document_it(add_inits)
 div = document_it(div_inits)
  
+print("")
 print(add(5,3))
 print("")
 print(div(5,3))

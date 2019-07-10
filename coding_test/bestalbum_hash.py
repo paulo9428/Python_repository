@@ -16,7 +16,7 @@ for i in range(len(genres)):
     music_dic[i] = {genres[i]:plays[i]}
 
 print(music_dic)
-print(music_dic.items())
+# print(music_dic.items())
 print(music_dic.keys())
 
 classic_sum = 0
