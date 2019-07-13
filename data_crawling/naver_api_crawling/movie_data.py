@@ -24,25 +24,20 @@ rescode = response.getcode()
 # sort = 'date'
 # query = 'title', 'link', 'bloggername', 'postdate'
 
-
-    
-
 if(rescode==200):
-
     response_body = response.read()
     a = response_body.decode('utf-8')
     # print(a)
     
     json_Data = json.loads(a, encoding='utf-8')
     pprint(json_Data)
-    
-    
 else:
     print("Error Code:" + rescode)
 
 
-mongo_client = MongoClient('localhost', 27017)
+# ----------------------------------------------------------- push into mongodb
 
+mongo_client = MongoClient('localhost', 27017)
 
 melondb = mongo_client.get_database('melondb')
 books = melondb.get_collection('Book')

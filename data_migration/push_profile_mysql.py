@@ -1,5 +1,3 @@
-
-
 data = ((), (), ())                                                 ##튜플에만 담겨야 하나??
 
 with open("students.csv", "r", encoding= 'utf8') as file:
@@ -9,29 +7,18 @@ with open("students.csv", "r", encoding= 'utf8') as file:
 
 class Transform:
 
-   
-
-    
-    
-    
     def name(): #elements[0]
-        
-        return elements[0][1] + "**"
 
+        return elements[0][1] + "**"
+    
     def gender(): 
         
         if elements[1] == '남':
-
-            return "M"
+                return "M"
+        if elements[1] == '여':
+                return "F"
 
         
-        if elements[1] == '여':
-
-            return "F"
-
-
-
-
     def age():  #elements[2]
 
         return elements[2][1] + "0대"
@@ -42,16 +29,16 @@ class Transform:
         
 
     def address(): #elements[4]
-
         gu_dong = elements[4].split[" "]
 
         return gu_dong[1] + " " + gu_dong[2]
 
+
+
+
+
+
           
-
-        
-
-
 import sqlite3
 
 conn = sqlite3.connect("exam.db")

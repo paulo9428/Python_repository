@@ -6,14 +6,14 @@ html = requests.get(url)
 
 soup = BeautifulSoup(html.text, 'html.parser')
 
-u = soup.select("body > div > table > tbody > tr")
+trs = soup.select("body > div > table > tbody > tr")
 
 #print(u)
 
-for i in range(1, len(u)+1):
-    v = soup.select("body > div > table > tbody > tr:nth-child({})".format(i))
-    u = v.get('td.tit')
-    print(u)
+for i in range(1, len(trs)+1):
+    c = soup.select("body > div > table > tbody > tr:nth-child({})".format(i))
+    t = c.get('td.tit')
+    print(t)
     
 
 

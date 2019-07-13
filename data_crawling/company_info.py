@@ -3,17 +3,11 @@
 # dic['COMPANY']['{} Incorp'.format(i)] = 
 
 
-# def 
-
-
-
-
-# def func2(a, **args):
-#     args['b'] = 50         # => **args는 딕셔너리 형으로 전달 되므로 값 변경 가능
+# def func2(a, **kargs):
+#     args['b'] = 50         # => **kargs는 딕셔너리 형으로 전달 되므로 값 변경 가능
 #     print( {a : args} )
 
 # func2( 'A Incorp', place='서울', people_count=30, phone_number='02-2345-2323', email='a@a.com')      # 10 {'b': 50, 'c': 30}
-
 
 
 from bs4 import BeautifulSoup
@@ -56,13 +50,13 @@ html = '''
 
 soup = BeautifulSoup(html, 'html.parser')
 trs = soup.select('table tr')
-trd = soup.select('table tr td')
+# trd = soup.select('table tr td')
 
 for tr in trs:
-    a = tr.select('th')           ##### th 는 json의  key 값
-    b = tr.select('td')
+    head = tr.select('th')           ##### th 는 json의  key 값
+    d = tr.select('td')
     
-    print(a)    
+    
 
 
 # dic = 
@@ -71,8 +65,8 @@ for tr in trs:
 # { 'C사' : {} }]}
 
 
-{'회사' : {'A사'}}
-{ '주소': '서울' , '직원수': '30명' , '전화번호': '02-2345-2323' , '대표메일': 'a@a.com',  }
+# {'회사' : {'A사'}}
+# { '주소': '서울' , '직원수': '30명' , '전화번호': '02-2345-2323' , '대표메일': 'a@a.com',  }
 
 
 

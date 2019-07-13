@@ -11,4 +11,5 @@ usd = soup.select_one(
     "#exchangeList > li:nth-of-type(1) > a.head.usd > div > span.value")
 
 # print(usd, type(usd), float(usd))
-print("usd=", type(usd))
+print("usd=", usd, float(usd.string.replace(',', '')))
+

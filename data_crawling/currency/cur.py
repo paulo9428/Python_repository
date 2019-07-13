@@ -11,9 +11,9 @@ soup = BeautifulSoup(html.text, 'html.parser')
 
 
 
-v = soup.select("body > div > table > tbody > tr")
+trs = soup.select("body > div > table > tbody > tr")
 
-for tr in v:
+for tr in trs:
     tds = tr.select("td")
     
     if(len(tds)) < 4:

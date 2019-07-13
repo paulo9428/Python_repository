@@ -11,4 +11,4 @@ sheet2.title = "두번째 시트"
 sheet2['A1'] = datetime.datetime.now()
 sheet2['A2'] = datetime.date.today()
 # 저장하기
-book.save("./output.xlsx")
+book.save("./excelfile/output.xlsx")
