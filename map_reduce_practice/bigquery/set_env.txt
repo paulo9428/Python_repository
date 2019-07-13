@@ -1,0 +1,1 @@
+set GOOGLE_APPLICATION_CREDENTIALS=C:\Users\paulo\code_repository\python_repository\map_reduce_practice\bigquery\bigquery.json

@@ -5,8 +5,7 @@ client = bigquery.get_client(json_key_file='./bigquery.json', readonly=False)
 DATABASE = "bqdb"
 TABLE = "test"
 if not client.check_table(DATABASE, TABLE):
-    pri: 'albumid', 'type': 'string', 'description': 'album id'},
-    ])nt("Create table {0}.{1}".format(DATABASE, TABLE), file=sys.stderr)
+    print("Create table {0}.{1}".format(DATABASE, TABLE), file=sys.stderr)
 
     client.create_table(DATABASE, TABLE, [
         {'name': 'songno', 'type': 'string', 'description': 'song id'},

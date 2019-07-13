@@ -1,1 +1,0 @@
-set GOOGLE_APPLICATION_CREDENTIALS=C:\workspace2\Learn_Python\bigquery\bigquery.json
