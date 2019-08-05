@@ -8,8 +8,6 @@ from openpyxl.chart import (
     BarChart, ScatterChart
 )
 
-
-
 book = openpyxl.Workbook()
 sheet1 = book.active
 
@@ -49,18 +47,11 @@ for i in range(1, 101):
     img3 = openpyxl.drawing.image.Image('new{}.png'.format(i))
     sheet2.add_image(img3, 'A{}'.format(i))
 
-
-
-
-
 ##---------------------------------------------------------------------------------------------
 
 
 sheet3 = book.create_sheet()
 sheet3.title = "세번째 시트"
-
-
-        
 
 datax = Reference(sheet1, min_col=4,               
 		min_row=2, max_col=4, max_row=11)
