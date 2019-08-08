@@ -10,10 +10,7 @@ from openpyxl.chart import (
 
 book = openpyxl.Workbook()
 sheet1 = book.active
-
 sheet1.title = "멜론 TOP100"
-
-
 
 with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
     reader = csv.reader(meltop, delimiter=',', quotechar='"')
@@ -31,15 +28,12 @@ with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
 
 ##------------------------------------------------------------------------------------
 
-
-
 sheet2 = book.create_sheet()
-sheet2.title = "두번째 시트"
+sheet2.title = "앨범 자켓 이미지"
 
 for i in range(1, 101):
  
     imgFile = 'C:\workspace\Learn_Python\crawl\image\{}.jpg'.format(i)
-
 
     img2 = Image.open(imgFile)
     new_img = img2.resize((30, 30))
@@ -49,9 +43,8 @@ for i in range(1, 101):
 
 ##---------------------------------------------------------------------------------------------
 
-
 sheet3 = book.create_sheet()
-sheet3.title = "세번째 시트"
+sheet3.title = "좋아요 수 차트"
 
 datax = Reference(sheet1, min_col=4,               
 		min_row=2, max_col=4, max_row=11)

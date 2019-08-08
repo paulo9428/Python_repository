@@ -4,12 +4,8 @@ from openpyxl.chart import (
     BarChart
 )
 
-
 sheet3 = book.create_sheet()
 sheet3.title = "세번째 시트"
-
-
-
 rows = []
 
 with codecs.open('./meltop100.csv', 'r', 'utf-8') as meltop:
