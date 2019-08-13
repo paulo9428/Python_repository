@@ -1,11 +1,3 @@
-int_numbers = range(-5, 6)
-
-print(list(int_numbers))
-
-negatives = map(lambda x: x * 2, int_numbers)
-
-print(list(negatives))
-
 def file_write():
     with open("stu_info.csv", "w", encoding="utf-8") as file:
         file.write("이름,성별,나이,성적\n")

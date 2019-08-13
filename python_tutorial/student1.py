@@ -1,13 +1,13 @@
 from functools import reduce
-from Student import Student
-# import Student
+import Student
+
 
 
 students = []
 with open('students.csv', 'r', encoding='utf8') as file:
     for i, line in enumerate(file):
         if i == 0: continue
-        students.append( Student(line) )
+        students.append()
 
 students.sort(key = lambda stu: stu.score, reverse = True)
 m = map(lambda stu: stu.make_grade(), students)
